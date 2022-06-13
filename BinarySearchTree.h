@@ -18,8 +18,6 @@ class BinarySearchTree
              Node* right = nullptr);
         Node* nextNode();
         Node* lastNode();
-        Node* nextNode() const;
-        Node* lastNode() const;
         std::pair<Key, Value> keyValuePair;
         Node* parent = nullptr;
         Node* left = nullptr;
@@ -66,8 +64,6 @@ public:
         bool operator!=(const Iterator& other) const;
 
     private:
-        // Node* _nextNode() const;
-        // Node* _lastNode() const;
         Node* _node;
     };
 
@@ -93,8 +89,6 @@ public:
         bool operator!=(const Iterator& other) const;
 
     private:
-        // Node* _nextNode() const;
-        // Node* _lastNode() const;
         const Node* _node;
     };
 
@@ -258,48 +252,6 @@ typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node:
 
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node::lastNode() {
-    auto node = this;
-    if (!node) {
-        return node;
-    }
-    if (node->left) {
-        node = node->left;
-        while (node->right) {
-            node = node->right;
-        }
-    }
-    else {
-        while (node->parent && node->parent->left == node) {
-            node = node->parent;
-        }
-        node = node->parent; 
-    }
-    return node;
-}
-
-template <typename Key, typename Value>
-typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node::nextNode() const {
-    auto node = this;
-    if (!node) {
-        return node;
-    }
-    if (node->right) {
-        node = node->right;
-        while (node->left) {
-            node = node->left;
-        }
-    }
-    else {
-        while (node->parent && node->parent->right == node) {
-            node = node->parent;
-        }
-        node = node->parent; 
-    }
-    return node;
-}
-
-template <typename Key, typename Value>
-typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node::lastNode() const {
     auto node = this;
     if (!node) {
         return node;
