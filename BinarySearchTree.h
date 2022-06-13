@@ -814,7 +814,7 @@ bool Set<Value>::contains(const Value& value) const {
         find(value);
         return true;
     }
-    catch(...) {
+    catch (...) {
         return false;
     }
 }
