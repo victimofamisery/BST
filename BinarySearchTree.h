@@ -227,10 +227,10 @@ BinarySearchTree<Key, Value>::Node::Node(Key key, Value value, Node* parent, Nod
 
 template <typename Key, typename Value>
 void BinarySearchTree<Key, Value>::_recursiveDelete(Node* node) {
-    if(node->left) {
+    if (node->left) {
         _recursiveDelete(node->left);
     }
-    if(node->right) {
+    if (node->right) {
         _recursiveDelete(node->right);
     }
 }
@@ -238,7 +238,7 @@ void BinarySearchTree<Key, Value>::_recursiveDelete(Node* node) {
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node::nextNode() {
     auto node = this;
-    if(!node) {
+    if (!node) {
         return node;
     }
     if (node->right) {
@@ -259,7 +259,7 @@ typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node:
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node::lastNode() {
     auto node = this;
-    if(!node) {
+    if (!node) {
         return node;
     }
     if (node->left) {
@@ -280,7 +280,7 @@ typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node:
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node::nextNode() const {
     auto node = this;
-    if(!node) {
+    if (!node) {
         return node;
     }
     if (node->right) {
@@ -301,7 +301,7 @@ typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node:
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node::lastNode() const {
     auto node = this;
-    if(!node) {
+    if (!node) {
         return node;
     }
     if (node->left) {
@@ -322,14 +322,14 @@ typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::Node:
 //BigFive
 template <typename Key, typename Value>
 BinarySearchTree<Key, Value>::BinarySearchTree(const BinarySearchTree& other) {
-    for(auto&& [key, value] : other) {
+    for (auto&& [key, value] : other) {
         insert(key, value);
     }
 }
 
 template <typename Key, typename Value>
 BinarySearchTree<Key, Value>& BinarySearchTree<Key, Value>::operator=(const BinarySearchTree& other) {
-    if(&other != this) {
+    if (&other != this) {
         _recursiveDelete(_root);
         BinarySearchTree<Key, Value>* tmp = new BinarySearchTree<Key, Value>(other);
         this = tmp;
@@ -345,7 +345,7 @@ BinarySearchTree<Key, Value>::BinarySearchTree(BinarySearchTree&& other) noexcep
 
 template <typename Key, typename Value>
 BinarySearchTree<Key, Value>& BinarySearchTree<Key, Value>::operator=(BinarySearchTree&& other) noexcept {
-    if(&other != this) {
+    if (&other != this) {
         _recursiveDelete(_root);
         this = std::move(other);
     }
@@ -475,14 +475,14 @@ bool BinarySearchTree<Key, Value>::ConstIterator::operator!=(const Iterator& oth
 //Methods
 template <typename Key, typename Value>
 void BinarySearchTree<Key, Value>::insert(const Key& key, const Value& value) {
-    if(_size == 0) {
+    if (_size == 0) {
         _root = new Node(key, value);
     }
     else {
         Node* search = _root;
-        while(true) {
-            if(key >= search->keyValuePair.first) {
-                if(!search->right) {
+        while (true) {
+            if (key >= search->keyValuePair.first) {
+                if (!search->right) {
                     search->right = new Node(key, value, search);
                     break;
                 }
@@ -490,8 +490,8 @@ void BinarySearchTree<Key, Value>::insert(const Key& key, const Value& value) {
                     search = search->right;
                 }
             }
-            if(key < search->keyValuePair.first) {
-                if(!search->left) {
+            if (key < search->keyValuePair.first) {
+                if (!search->left) {
                     search->left = new Node(key, value, search);
                     break;
                 }
@@ -557,11 +557,11 @@ typename BinarySearchTree<Key, Value>::Iterator BinarySearchTree<Key, Value>::fi
 
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Node* BinarySearchTree<Key, Value>::_findNode(const Key& key) const {
-    if(!_root) {
+    if (!_root) {
         throw "Key not found";
     }
     Node* search = _root;
-    while(true) { 
+    while (true) { 
         if (key == search->keyValuePair.first) {
             return search;
         }
@@ -584,7 +584,7 @@ template <typename Key, typename Value>
 std::pair<typename BinarySearchTree<Key, Value>::Iterator, typename BinarySearchTree<Key, Value>::Iterator> BinarySearchTree<Key, Value>::equalRange(const Key& key) {
     Iterator begin = find(key);
     Iterator end = begin;
-    while((*end).first == (*begin).first) {
+    while ((*end).first == (*begin).first) {
         end++;
     }
     return std::pair<Iterator, Iterator> (begin, end);
@@ -594,7 +594,7 @@ template <typename Key, typename Value>
 std::pair<typename BinarySearchTree<Key, Value>::ConstIterator, typename BinarySearchTree<Key, Value>::ConstIterator> BinarySearchTree<Key, Value>::equalRange(const Key& key) const {
     ConstIterator begin = find(key);
     ConstIterator end = begin;
-    while((*end).first == (*begin).first) {
+    while ((*end).first == (*begin).first) {
         end++;
     }
     return std::pair<ConstIterator, ConstIterator> (begin, end);
@@ -604,7 +604,7 @@ template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::ConstIterator BinarySearchTree<Key, Value>::min(const Key& key) const {
     auto range = equalRange(key);
     auto min = range.first;
-    for(auto it = range.first; it < range.second; it++) {
+    for (auto it = range.first; it < range.second; it++) {
         if ((*it).second < (*min).second) {
             min = it;
         }
@@ -616,7 +616,7 @@ template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::ConstIterator BinarySearchTree<Key, Value>::max(const Key& key) const {
     auto range = equalRange(key);
     auto max = range.first;
-    for(auto it = range.first; it < range.second; it++) {
+    for (auto it = range.first; it < range.second; it++) {
         if ((*it).second > (*max).second) {
             max = it;
         }
@@ -627,7 +627,7 @@ typename BinarySearchTree<Key, Value>::ConstIterator BinarySearchTree<Key, Value
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Iterator BinarySearchTree<Key, Value>::begin() {
     Node* search = _root;
-    while(search->left) {
+    while (search->left) {
         search = search->left;
     }
     return Iterator(search);
@@ -641,7 +641,7 @@ typename BinarySearchTree<Key, Value>::Iterator BinarySearchTree<Key, Value>::en
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::ConstIterator BinarySearchTree<Key, Value>::cbegin() const {
     Node* search = _root;
-    while(search->left) {
+    while (search->left) {
         search = search->left;
     }
     return ConstIterator(search);
@@ -667,7 +667,7 @@ Map<Key, Value>::Map(const Map& other) {
 
 template <typename Key, typename Value>
 Map<Key, Value>& Map<Key, Value>::operator=(const Map& other) {
-    if(&other != this) {
+    if (&other != this) {
         delete _tree;
         _tree = other._tree;
     }
@@ -681,7 +681,7 @@ Map<Key, Value>::Map(Map&& other) noexcept {
 
 template <typename Key, typename Value>
 Map<Key, Value>& Map<Key, Value>::operator=(Map&& other) noexcept {
-    if(&other != this) {
+    if (&other != this) {
         delete _tree;
         this = std::move(other);
     }
@@ -695,7 +695,7 @@ void Map<Key, Value>::insert(const Key& key, const Value& value) {
         MapIterator it = find(key);
         (*it).second = value;
     }
-    catch(...) {
+    catch (...) {
         _tree.insert(key, value);
     }
 }
@@ -725,7 +725,7 @@ Value& Map<Key, Value>::operator[](const Key& key) {
     try {
         return ((*find(key)).second);
     }
-    catch(...) {
+    catch (...) {
         insert(key, Value());
         return ((*find(key)).second);
     }
@@ -766,7 +766,7 @@ Set<Value>::Set(const Set& other) {
 
 template <typename Value>
 Set<Value>& Set<Value>::operator=(const Set& other) {
-    if(&other != this) {
+    if (&other != this) {
         delete _map;
         _map = other._map;
     }
@@ -780,7 +780,7 @@ Set<Value>::Set(Set&& other) noexcept {
 
 template <typename Value>
 Set<Value>& Set<Value>::operator=(Set&& other) noexcept {
-    if(&other != this) {
+    if (&other != this) {
         delete _map;
         this = std::move(other);
     }
