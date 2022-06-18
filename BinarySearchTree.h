@@ -302,7 +302,7 @@ BinarySearchTree<Key, Value>::BinarySearchTree(BinarySearchTree&& other) noexcep
 
 template <typename Key, typename Value>
 BinarySearchTree<Key, Value>&
- BinarySearchTree<Key, Value>::operator=(BinarySearchTree&& other) noexcept {
+BinarySearchTree<Key, Value>::operator=(BinarySearchTree&& other) noexcept {
     if (&other != this) {
         _recursiveDelete(_root);
         this = std::move(other);
@@ -402,7 +402,7 @@ BinarySearchTree<Key, Value>::ConstIterator::operator->() const {
 
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::ConstIterator
- BinarySearchTree<Key, Value>::ConstIterator::operator++() {
+BinarySearchTree<Key, Value>::ConstIterator::operator++() {
     _node = _node->nextNode();
     return *this;
 }
