@@ -353,9 +353,9 @@ BinarySearchTree<Key, Value>::Iterator::operator++() {
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Iterator 
 BinarySearchTree<Key, Value>::Iterator::operator++(int) {
-	Iterator bufIt = *this;
-	++*this;
-	return bufIt;
+    Iterator bufIt = *this;
+    ++*this;
+    return bufIt;
 }
 
 template <typename Key, typename Value>
@@ -369,8 +369,8 @@ template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Iterator 
 BinarySearchTree<Key, Value>::Iterator::operator--(int) {
     Iterator bufIt = *this;
-	--*this;
-	return bufIt;
+    --*this;
+    return bufIt;
 }
 
 template <typename Key, typename Value>
@@ -410,9 +410,9 @@ typename BinarySearchTree<Key, Value>::ConstIterator
 template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::ConstIterator 
 BinarySearchTree<Key, Value>::ConstIterator::operator++(int) {
-	ConstIterator bufIt = *this;
-	++*this;
-	return bufIt;
+    ConstIterator bufIt = *this;
+    ++*this;
+    return bufIt;
 }
 
 template <typename Key, typename Value>
@@ -428,8 +428,8 @@ template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::ConstIterator 
 BinarySearchTree<Key, Value>::ConstIterator::operator--(int) {
     typename ConstIterator::Iterator bufIt = *this;
-	--*this;
-	return bufIt;
+    --*this;
+    return bufIt;
 }
 
 template <typename Key, typename Value>
@@ -637,7 +637,7 @@ BinarySearchTree<Key, Value>::cend() const {
 
 template <typename Key, typename Value>
 size_t BinarySearchTree<Key, Value>::size() const {
- return _size;
+    return _size;
 }
 
 //MAP
