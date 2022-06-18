@@ -531,7 +531,7 @@ template <typename Key, typename Value>
 typename BinarySearchTree<Key, Value>::Node* 
 BinarySearchTree<Key, Value>::_findNode(const Key& key) const {
     if (!_root) {
-        throw "Key not found";
+        return nullptr;
     }
     Node* search = _root;
     while (true) { 
@@ -540,13 +540,13 @@ BinarySearchTree<Key, Value>::_findNode(const Key& key) const {
         }
         if (key < search->keyValuePair.first) {
             if (!search->left) {
-                throw "Key not found";
+                return nullptr;
             }
             search = search->left;
         }
         if (key > search->keyValuePair.first) {
             if (!search->right) {
-                throw "Key not found";
+                return nullptr;
             }
             search = search->right;
         }
@@ -673,12 +673,12 @@ Map<Key, Value>& Map<Key, Value>::operator=(Map&& other) noexcept {
 
 //Methods
 template <typename Key, typename Value>
-void Map<Key, Value>::insert(const Key& key, const Value& value) {
-    try {     
-        MapIterator it = find(key);
+void Map<Key, Value>::insert(const Key& key, const Value& value) {   
+    MapIterator it = find(key);
+    if (*it) {
         (*it).second = value;
     }
-    catch (...) {
+    else {
         _tree.insert(key, value);
     }
 }
